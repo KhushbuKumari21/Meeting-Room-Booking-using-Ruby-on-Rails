@@ -1,0 +1,14 @@
+<h1>Available Meeting Rooms</h1>
+
+<% if @meeting_rooms.any? %>
+  <% @meeting_rooms.each do |meeting_room| %>
+    <div>
+      <h2><%= meeting_room.name %></h2>
+      <p>Capacity: <%= meeting_room.capacity %></p>
+      <%= link_to "Book Meeting Room", new_booking_path(meeting_room_id: meeting_room.id), class: "btn btn-primary" %>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <p>No meeting rooms available.</p>
+<% end %>

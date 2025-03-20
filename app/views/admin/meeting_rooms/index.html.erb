@@ -1,0 +1,26 @@
+<h1>Meeting Rooms</h1>
+
+<%= link_to "Add New Room", new_admin_meeting_room_path, class: "button" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Capacity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @meeting_rooms.each do |room| %>
+      <tr>
+        <td><%= room.name %></td>
+        <td><%= room.capacity %> people</td>
+        <td>
+          <%= link_to "Edit", edit_admin_meeting_room_path(room), class: "button" %>
+          <%= link_to "Delete", admin_meeting_room_path(room), method: :delete, data: { confirm: "Are you sure?" }, class: "button delete-button" %>
+ 
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

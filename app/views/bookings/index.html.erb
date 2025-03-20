@@ -1,0 +1,49 @@
+<h1>Your Bookings</h1>
+
+<% if @bookings.present? %>
+  <table border="1" style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>
+        <th>Meeting Room</th>
+        <th>User Name</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @bookings.each_with_index do |booking, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= booking.meeting_room.name %></td>
+          <td><%= booking.user_name %></td>
+          <td><%= booking.start_time.strftime('%I:%M %p') %></td>
+          <td><%= booking.end_time.strftime('%I:%M %p') %></td>
+          <td>
+            <% if booking.start_time > Time.current %>
+              <span style="color: green; font-weight: bold;">Upcoming</span>
+            <% else %>
+              <span style="color: red; font-weight: bold;">Expired</span>
+            <% end %>
+          </td>
+          
+          <td>
+            <% if booking.start_time > Time.current && booking.status == "pending" %>
+            <%= link_to "Cancel Booking", cancel_booking_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" } %>
+
+        
+
+              <% else %>
+              <span style="color: grey; font-weight: bold;">N/A</span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No bookings found. <%= link_to 'Book a Meeting Room', meeting_rooms_path %></p>
+<% end %>

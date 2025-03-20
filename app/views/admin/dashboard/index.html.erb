@@ -1,0 +1,47 @@
+<h2>Admin Dashboard</h2>
+
+<!-- Search Form -->
+<form method="get">
+  <label for="date">Date:</label>
+  <input type="date" name="date" value="<%= params[:date] %>">
+
+  <label for="room">Room:</label>
+  <input type="text" name="room" placeholder="Enter room name" value="<%= params[:room] %>">
+
+  <label for="user">User:</label>
+  <input type="text" name="user" placeholder="Enter user name" value="<%= params[:user] %>">
+
+  <button type="submit">Search</button>
+</form>
+
+<!-- Total Booked Slots -->
+<p>Total Booked Slots: <%= @total_booked_slots %></p>
+
+<!-- Booking Table -->
+<table>
+  <thead>
+    <tr>
+      <th>Room</th>
+      <th>User</th>
+      <th>Date</th>
+      <th>Time Slot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @bookings.any? %>
+      <% @bookings.each do |booking| %>
+        <tr>
+        <td><%= booking.meeting_room.name %></td>
+        <td><%= booking.user.name %></td>
+        <td><%= booking.start_time.to_date %></td>
+        <td><%= "#{booking.start_time.strftime('%H:%M')} - #{booking.end_time.strftime('%H:%M')}" %></td>
+      </tr>
+      
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4">No bookings found.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

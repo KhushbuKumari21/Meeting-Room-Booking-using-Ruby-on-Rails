@@ -1,0 +1,8 @@
+<h1>Welcome to Meeting Room Booking System</h1>
+
+<% if user_signed_in? %>
+  <p>Logged in as <%= current_user.email %></p>
+  
+  <%= link_to 'View Meeting Rooms', meeting_rooms_path %> | 
+  
+<% end %>

@@ -1,0 +1,42 @@
+
+<h1>Book a Meeting Room</h1>
+
+
+<% if flash[:alert].present? %>
+  <p style="color: red; font-weight: bold;"><%= flash[:alert] %></p>
+<% end %>
+
+<% if @meeting_room.present? %>
+  <%= form_with(model: @booking, local: true) do |f| %>
+    <%= f.hidden_field :meeting_room_id, value: @meeting_room.id %>
+
+    <% if @booking.errors.any? %>
+      <div style="color: red; font-weight: bold;">
+        <p><strong>Please fix the following errors:</strong></p>
+        <ul>
+          <% @booking.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :start_time, "Start Time", for: "booking_start_time_1i" %>
+      <%= f.datetime_select :start_time %>
+    </div>
+
+    <div>
+      <%= f.label :end_time, "End Time", for: "booking_end_time_1i" %>
+      <%= f.datetime_select :end_time %>
+    </div>
+
+    <%= f.submit "Book Room" %>
+  <% end %>
+
+<% else %>
+  <p style="color: red; font-weight: bold;">
+    🚨 Meeting Room not found. Please go back and select a valid room.
+  </p>
+  <%= link_to 'Back to Meeting Rooms', meeting_rooms_path %>
+<% end %>

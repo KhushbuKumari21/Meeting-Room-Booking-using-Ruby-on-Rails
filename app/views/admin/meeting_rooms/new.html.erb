@@ -1,0 +1,19 @@
+<h1>Add New Meeting Room</h1>
+
+<%= form_with model: @meeting_room, url: admin_meeting_rooms_path, local: true do |form| %>
+  <div>
+    <%= form.label :name, "Room Name" %>
+    <%= form.text_field :name, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :capacity, "Capacity" %>
+    <%= form.number_field :capacity, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Create Room", class: "button" %>
+  </div>
+<% end %>
+
+<%= link_to "Back", admin_meeting_rooms_path, class: "button" %>

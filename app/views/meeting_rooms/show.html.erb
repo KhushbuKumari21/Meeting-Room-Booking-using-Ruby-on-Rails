@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag "meeting_rooms", media: "all" %>
+
+<div class="meeting-room-container">
+  <h1><%= @meeting_room.name %></h1>
+  <p><span>Room ID:</span> <%= @meeting_room.id %></p>
+  <p><span>Capacity:</span> <%= @meeting_room.capacity %></p>
+  <p>
+    <span>Available:</span> 
+    <span class="<%= @meeting_room.available ? 'available-yes' : 'available-no' %>">
+      <%= @meeting_room.available ? "Yes" : "No" %>
+    </span>
+  </p>
+</div>

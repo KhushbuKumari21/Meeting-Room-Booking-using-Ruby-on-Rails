@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  meeting_room: one
+  start_time: 2025-03-08 19:47:12
+  end_time: 2025-03-08 19:47:12
+
+two:
+  user: two
+  meeting_room: two
+  start_time: 2025-03-08 19:47:12
+  end_time: 2025-03-08 19:47:12

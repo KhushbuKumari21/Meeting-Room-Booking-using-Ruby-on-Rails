@@ -1,0 +1,8 @@
+<h1>Booking Details</h1>
+
+<p><strong>Meeting Room:</strong> <%= @booking.meeting_room.name %></p>
+<p><strong>Start Time:</strong> <%= @booking.start_time.strftime("%Y-%m-%d %H:%M") %></p>
+<p><strong>End Time:</strong> <%= @booking.end_time.strftime("%Y-%m-%d %H:%M") %></p>
+<p><strong>Booked by:</strong> <%= @booking.user.name %></p>
+
+<%= link_to "Back to Bookings", bookings_path, class: "btn btn-primary" %>
