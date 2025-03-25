@@ -99,11 +99,12 @@ class BookingsController < ApplicationController
   end
 
   def valid_time_slot?(start_time, end_time)
-    return false unless [0, 30].include?(start_time.min) && [0, 30].include?(end_time.min)
-    return false unless end_time > start_time
-    return false unless ((end_time - start_time) * 24 * 60) % 30 == 0  
-    true
-  end
+  return false unless [0, 30].include?(start_time.min) && [0, 30].include?(end_time.min)
+  return false unless end_time > start_time
+  return false unless (end_time - start_time) % 30.minutes == 0
+  true
+end
+
 
   def exceeds_daily_limit?(user, start_time, end_time)
     total_booked_time = Booking.where(user_id: user.id)
