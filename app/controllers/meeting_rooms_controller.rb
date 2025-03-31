@@ -26,7 +26,6 @@ class MeetingRoomsController < ApplicationController
   def set_meeting_room
     @meeting_room = MeetingRoom.find(params[:id])
   end
-end
 def generate_half_hour_slots
   start_of_day = Time.zone.now.beginning_of_day + 9.hours 
   end_of_day = start_of_day + 9.hours 
@@ -38,4 +37,5 @@ def generate_half_hour_slots
     current_time += 30.minutes
   end
   slots
+end
 end
